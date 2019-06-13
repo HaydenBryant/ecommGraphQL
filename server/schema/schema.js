@@ -26,12 +26,33 @@ const StickType = new GraphQLObjectType({
     })
 })
 
+const SkateType = new GraphQLObjectType({
+    name: "Skate",
+    fields: () => ({
+        id: { type: GraphQLID },
+        brand: { type: GraphQLString },
+        model: { type: GraphQLString },
+        size: { type: GraphQLInt },
+        width: { type: GraphQLInt },
+        color: { type: GraphQLString },
+        condition: { type: GraphQLString },
+        price: { type: GraphQLInt }
+    })
+})
+
 const RootQuery = new GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
         stick: {
             type: StickType,
             args: { id: { type: GraphQLID } },
+            resolve(parent, args){
+                //get data from db
+            }
+        },
+        skate: {
+            type: SkateType,
+            args: { id: { type: GraphQLID }},
             resolve(parent, args){
                 //get data from db
             }
